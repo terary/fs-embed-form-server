@@ -1,0 +1,34 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { FsApiInterfaceService } from './fs-api-interface.service';
+import { CreateFsApiInterfaceDto } from './dto/create-fs-api-interface.dto';
+import { UpdateFsApiInterfaceDto } from './dto/update-fs-api-interface.dto';
+
+@Controller('fs-api-interface')
+export class FsApiInterfaceController {
+  constructor(private readonly fsApiInterfaceService: FsApiInterfaceService) {}
+
+  @Post()
+  create(@Body() createFsApiInterfaceDto: CreateFsApiInterfaceDto) {
+    return this.fsApiInterfaceService.create(createFsApiInterfaceDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.fsApiInterfaceService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.fsApiInterfaceService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateFsApiInterfaceDto: UpdateFsApiInterfaceDto) {
+    return this.fsApiInterfaceService.update(+id, updateFsApiInterfaceDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.fsApiInterfaceService.remove(+id);
+  }
+}

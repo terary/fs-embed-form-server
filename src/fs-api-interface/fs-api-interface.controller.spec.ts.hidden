@@ -1,0 +1,20 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { FsApiInterfaceController } from './fs-api-interface.controller.ts.hidden';
+import { FsApiInterfaceService } from './fs-api-interface.service';
+
+describe('FsApiInterfaceController', () => {
+  let controller: FsApiInterfaceController;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [FsApiInterfaceController],
+      providers: [FsApiInterfaceService],
+    }).compile();
+
+    controller = module.get<FsApiInterfaceController>(FsApiInterfaceController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});
